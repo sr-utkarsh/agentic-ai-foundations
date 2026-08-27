@@ -48,3 +48,23 @@ chain = chat_template | model | StrOutputParser()
 
 result = chain.invoke({"topic": "Merge Sort Algorithm"})
 print(result)
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------
+from langchain_core.chat_history import InMemoryChatMessageHistory
+
+memoryview = InMemoryChatMessageHistory()
+memoryview.add_user_message("My name is Utkarsh and I am learning coding")
+memoryview.add_ai_message("Hello Utkarsh! That's great to hear.")
+
+chat_template_with_memory = ChatPromptTemplate.from_messages(
+    [
+        ("system", "You are a helpful coding tutor. Keep answers concise and to the point."),
+        ("placeholder", "{history}"),
+        ("user", "{question}"),
+    ]
+)
+
+chat_chain_with_memory = chat_template_with_memory | model | StrOutputParser()
+result_with_memory = chat_chain_with_memory.invoke({"history": memoryview.messages, "question": "What is my name?"})
+
+print(result_with_memory)
