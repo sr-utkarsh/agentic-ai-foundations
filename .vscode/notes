@@ -1,0 +1,10 @@
+#----------------------------------------------------------------------------------------------------
+from json import tool
+
+
+@tool #decorator to register the function as a tool
+def add_numbers(a: int, b: int) -> int:
+    """Add two numbers.""" #docstring to describe the function, LLMs can use this to understand the purpose of the function
+    return a + b
+
+#framework converts the function into a JSON schema, which can be used by LLMs to understand the function's purpose and how to call it. The decorator also registers the function as a tool that can be used in a LangChain agent.
