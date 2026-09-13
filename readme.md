@@ -1,0 +1,1 @@
+Create a .env file and set OPENAI_API_KEY={your_openapi_key}
