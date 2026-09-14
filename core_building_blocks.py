@@ -10,6 +10,8 @@ print (script_dir)
 env_path = script_dir/".env"
 # print(env_path)
 load_dotenv(dotenv_path=env_path)
+if not os.getenv("OPENAI_API_KEY") and os.getenv("OPEN_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = os.environ["OPEN_API_KEY"]
 # print(os.getenv("OPEN_API_KEY"))
 
 from langchain.chat_models import init_chat_model
